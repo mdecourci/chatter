@@ -3,8 +3,11 @@ target
 .classpath
 .project
 .settings
+.eclipse-pmd
 
 # Package Files #
 *.jar
 *.war
 *.ear
+*.log
+
