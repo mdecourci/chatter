@@ -1,10 +1,11 @@
 /**
  * 
  */
-package org.chatline;
+package org.chatline.domain;
 
 import static org.junit.Assert.*;
 
+import org.chatline.domain.PostEvent;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;

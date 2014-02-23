@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.chatline;
+package org.chatline.domain;
 
 import org.joda.time.DateTime;
 

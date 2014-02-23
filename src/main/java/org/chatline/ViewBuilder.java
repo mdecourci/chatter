@@ -5,6 +5,7 @@ package org.chatline;
 
 import java.util.List;
 
+import org.chatline.domain.PostEvent;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
