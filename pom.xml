@@ -8,6 +8,7 @@
 	<properties>
         <slf4j.version>1.7.6</slf4j.version>
         <spring.version>4.0.2.RELEASE</spring.version>
+        <joda-time.version>2.3</joda-time.version>
 	</properties>
 
 	<dependencies>
@@ -32,6 +33,11 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${joda-time.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<resources>
