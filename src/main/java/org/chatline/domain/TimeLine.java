@@ -1,6 +1,7 @@
 package org.chatline.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.chatline.ViewBuilder;
@@ -64,6 +65,10 @@ public class TimeLine {
 		List<PostEvent> postings = assertUserPostings();
 		view = builder.build(now, postings);
 		return view;
+	}
+
+	public List<PostEvent> getUserPostings() {
+		return Collections.unmodifiableList(userPostings);
 	}
 
 	private List<PostEvent> assertUserPostings() {

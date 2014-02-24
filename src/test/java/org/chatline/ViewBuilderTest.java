@@ -41,7 +41,7 @@ public class ViewBuilderTest {
 		postings.add(event);
 		
 		String  view = builder.build(postTime.plusSeconds(1), postings);
-		assertEquals("A message (4 seconds ago)\nA later message (7 seconds ago)\n", view);
+		assertEquals("A later message (1 seconds ago)\nA message (4 seconds ago)\n", view);
 	}
 
 }

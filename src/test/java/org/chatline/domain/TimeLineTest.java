@@ -62,6 +62,6 @@ public class TimeLineTest extends TimeLineTestHelper {
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (3 seconds ago)\n", timeLine.getView());
+		assertEquals("at least it's sunny (1 seconds ago)\nOh, we lost! (2 seconds ago)\n", timeLine.getView());
 	}
 }

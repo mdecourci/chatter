@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.chatline.ViewBuilder;
 import org.chatline.domain.PostEvent;
 import org.chatline.domain.TimeLine;
 import org.joda.time.DateTime;
@@ -22,7 +23,10 @@ import org.springframework.util.Assert;
 public class TimeLineServiceImpl implements TimeLineService {
     private static final Logger LOG = LoggerFactory.getLogger(TimeLineServiceImpl.class);
 
+	private final ViewBuilder builder = new ViewBuilder();
+
 	private Map<String,TimeLine> userTimelines = new HashMap<>();
+	private Map<String,List<String>> userFollowings = new HashMap<>();
 
 	/* (non-Javadoc)
 	 * @see org.chatline.service.TimeLineService#post(java.lang.String, java.lang.String)
@@ -48,6 +52,29 @@ public class TimeLineServiceImpl implements TimeLineService {
 		Assert.hasLength(user, "user is mandatory");
 		Assert.notNull(userTimelines.get(user), "No time line for user " + user);
 		return userTimelines.get(user);
+	}
+
+	@Override
+	public void follow(String user, String followingUser) {
+		LOG.debug("follow() : user={}, followingUser={}", user, followingUser);
+		Assert.hasLength(user, "user is mandatory");
+		Assert.hasLength(followingUser, "followingUser is mandatory");
+		if (userFollowings.get(user) == null) {
+			userFollowings.put(user, new ArrayList<String>());
+		}
+		userFollowings.get(user).add(followingUser);
+	}
+
+	@Override
+	public String getWall(String user) {
+		DateTime now = DateTime.now();  // get the time of the request
+		LOG.debug("getWall() : user={}", user);
+		// aggregate the list of postings
+		List<PostEvent> aagregatePostEvents = new ArrayList<>(userTimelines.get(user).getUserPostings());
+		for (String followingUser : userFollowings.get(user)) {
+			aagregatePostEvents.addAll(userTimelines.get(followingUser).getUserPostings());
+		}
+		return builder.build(now, aagregatePostEvents);
 	}
 
 }

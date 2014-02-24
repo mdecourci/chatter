@@ -67,6 +67,41 @@ public class TimeLineServiceTest extends TimeLineTestHelper {
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (3 seconds ago)\n", timeLineService.getTimeLine("Bob").getView());
+		assertEquals("at least it's sunny (1 seconds ago)\nOh, we lost! (2 seconds ago)\n", timeLineService.getTimeLine("Bob").getView());
+	}
+	
+	@Test
+	public void followUser() {
+		timeLineService.post("Alice", "I love the weather today");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.post("Charlie", "I'm in New York today! Anyone wants to have a coffee?");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.follow("Charlie", "Alice");
+		String wall = timeLineService.getWall("Charlie");
+		
+		assertEquals("I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nI love the weather today (2 seconds ago)\n", wall);		
+	}
+	
+	@Test
+	public void followManyUsers() {
+		timeLineService.post("Alice", "I love the weather today");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.post("Bob", "at least it's sunny");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.post("Bob", "Oh, we lost!");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.post("Charlie", "I'm in New York today! Anyone wants to have a coffee?");
+		// delay by 1 secs
+		delay(1);
+		timeLineService.follow("Charlie", "Alice");
+		timeLineService.follow("Charlie", "Bob");
+		String wall = timeLineService.getWall("Charlie");
+		
+		assertEquals("I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nOh, we lost! (2 seconds ago)\nat least it's sunny (3 seconds ago)\nI love the weather today (4 seconds ago)\n", wall);		
 	}
 }
