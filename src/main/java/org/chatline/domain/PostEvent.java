@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
  *
  */
 public class PostEvent {
+	private final String user;
 	private final String message;
 	private final DateTime dateTime;
 
@@ -19,8 +20,9 @@ public class PostEvent {
 	 * @param message
 	 * @param dateTime
 	 */
-	public PostEvent(String message, DateTime dateTime) {
+	public PostEvent(String user, String message, DateTime dateTime) {
 		super();
+		this.user = user;
 		this.message = message;
 		this.dateTime = dateTime;
 	}
@@ -33,8 +35,13 @@ public class PostEvent {
 		return dateTime;
 	}
 
+	public String getUser() {
+		return user;
+	}
+
 	@Override
 	public String toString() {
-		return "PostEvent [message=" + message + ", dateTime=" + dateTime + "]";
+		return "PostEvent [user=" + user + ", message=" + message
+				+ ", dateTime=" + dateTime + "]";
 	}
 }

@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.chatline.ViewBuilder;
+import javax.inject.Named;
+
+import org.chatline.builder.ViewBuilder;
 import org.chatline.domain.PostEvent;
 import org.chatline.domain.TimeLine;
 import org.joda.time.DateTime;
@@ -20,10 +22,9 @@ import org.springframework.util.Assert;
  * @author michaeldecourci
  *
  */
+@Named("timeLineService")
 public class TimeLineServiceImpl implements TimeLineService {
     private static final Logger LOG = LoggerFactory.getLogger(TimeLineServiceImpl.class);
-
-	private final ViewBuilder builder = new ViewBuilder();
 
 	private Map<String,TimeLine> userTimelines = new HashMap<>();
 	private Map<String,List<String>> userFollowings = new HashMap<>();
@@ -41,7 +42,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 		if (userTimelines.get(user) == null) {
 			userTimelines.put(user, new TimeLine(user));
 		}
-		userTimelines.get(user).publish(new PostEvent(message, now));
+		userTimelines.get(user).publish(new PostEvent(user, message, now));
 	}
 
 	/* (non-Javadoc)
@@ -74,7 +75,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 		for (String followingUser : userFollowings.get(user)) {
 			aagregatePostEvents.addAll(userTimelines.get(followingUser).getUserPostings());
 		}
-		return builder.build(now, aagregatePostEvents);
+		return ViewBuilder.build(now, aagregatePostEvents);
 	}
 
 }

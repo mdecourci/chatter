@@ -25,7 +25,7 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void personalPosting() {
 		TimeLine timeLine = new TimeLine("Alice");
-		timeLine.publish(new PostEvent("I love the weather today", DateTime.now()));
+		timeLine.publish(new PostEvent("Alice", "I love the weather today", DateTime.now()));
 		
 		assertEquals("I love the weather today", timeLine.getLastPost());
 	}
@@ -33,8 +33,8 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void manyPersonalPosting() {
 		TimeLine timeLine = new TimeLine("Bob");
-		timeLine.publish(new PostEvent("Oh, we lost!", DateTime.now()));
-		timeLine.publish(new PostEvent("at least it's sunny", DateTime.now()));
+		timeLine.publish(new PostEvent("Bob", "Oh, we lost!", DateTime.now()));
+		timeLine.publish(new PostEvent("Bob", "at least it's sunny", DateTime.now()));
 		
 		assertEquals("Oh, we lost!", timeLine.firstPost());
 		assertEquals("at least it's sunny", timeLine.nextPost());
@@ -43,7 +43,7 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void viewTimeLine() {
 		TimeLine timeLine = new TimeLine("Alice");
-		timeLine.publish(new PostEvent("I love the weather today", DateTime.now()));
+		timeLine.publish(new PostEvent("Alice", "I love the weather today", DateTime.now()));
 		// delay by 1 secs
 		delay(1);
 
@@ -54,10 +54,10 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void viewMoreTimeLine() {
 		TimeLine timeLine = new TimeLine("Bob");
-		timeLine.publish(new PostEvent("Oh, we lost!", DateTime.now()));
+		timeLine.publish(new PostEvent("Bob", "Oh, we lost!", DateTime.now()));
 		// delay by 1 secs
 		delay(1);
-		timeLine.publish(new PostEvent("at least it's sunny", DateTime.now()));
+		timeLine.publish(new PostEvent("Bob", "at least it's sunny", DateTime.now()));
 		// delay by 1 secs
 		delay(1);
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.chatline.ViewBuilder;
+import org.chatline.builder.ViewBuilder;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +14,6 @@ public class TimeLine {
     private static final Logger LOG = LoggerFactory.getLogger(TimeLine.class);
 
 	private List<PostEvent> userPostings = new ArrayList<>();
-
-	private final ViewBuilder builder = new ViewBuilder();
 	private int postingIteratorIndex;
 
 	private final String user;
@@ -63,7 +61,7 @@ public class TimeLine {
 		String view = "";
 
 		List<PostEvent> postings = assertUserPostings();
-		view = builder.build(now, postings);
+		view = ViewBuilder.build(now, postings);
 		return view;
 	}
 

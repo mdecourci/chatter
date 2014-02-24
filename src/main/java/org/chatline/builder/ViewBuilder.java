@@ -1,11 +1,13 @@
 /**
  * 
  */
-package org.chatline;
+package org.chatline.builder;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.inject.Named;
 
 import org.chatline.domain.PostEvent;
 import org.joda.time.DateTime;
@@ -23,7 +25,7 @@ public class ViewBuilder {
 	 * @param postings - list of postings
 	 * @return String - built view
 	 */
-	public String build(DateTime timeOfViewing, List<PostEvent> postings) {
+	public final static String build(DateTime timeOfViewing, List<PostEvent> postings) {
 		sortInReverseTimeOrder(postings);
 		StringBuilder view = new StringBuilder("");
 		// get first posting - 
@@ -51,7 +53,7 @@ public class ViewBuilder {
 		return view.toString();
 	}
 
-	private void sortInReverseTimeOrder(List<PostEvent> postings) {
+	private static void sortInReverseTimeOrder(List<PostEvent> postings) {
 		// sort aggregate in time order
 		Collections.sort(postings, new Comparator<PostEvent>() {
 

@@ -1,4 +1,4 @@
-package org.chatline;
+package org.chatline.builder;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,13 +15,11 @@ public class ViewBuilderTest {
 	public void build() {
 		DateTime now = DateTime.now();
 		
-		ViewBuilder builder = new ViewBuilder();
-		
 		List<PostEvent> postings = new ArrayList<>();
-		PostEvent event = new PostEvent("A message", now.minusSeconds(2));
+		PostEvent event = new PostEvent("Alice", "A message", now.minusSeconds(2));
 		postings.add(event);
 		
-		String  view = builder.build(now, postings);
+		String  view = ViewBuilder.build(now, postings);
 		assertEquals("A message (2 seconds ago)\n", view);
 	}
 
@@ -29,18 +27,16 @@ public class ViewBuilderTest {
 	public void buildMultilines() {
 		DateTime now = DateTime.now();
 		
-		ViewBuilder builder = new ViewBuilder();
-		
 		List<PostEvent> postings = new ArrayList<>();
 		DateTime postTime = now.plusSeconds(2);
-		PostEvent event = new PostEvent("A message", postTime);
+		PostEvent event = new PostEvent("Alice", "A message", postTime);
 		postings.add(event);
 
 		postTime = postTime.plusSeconds(3);
-		event = new PostEvent("A later message", postTime);
+		event = new PostEvent("Alice", "A later message", postTime);
 		postings.add(event);
 		
-		String  view = builder.build(postTime.plusSeconds(1), postings);
+		String  view = ViewBuilder.build(postTime.plusSeconds(1), postings);
 		assertEquals("A later message (1 seconds ago)\nA message (4 seconds ago)\n", view);
 	}
 
