@@ -26,6 +26,23 @@ public class ViewBuilder {
 	 * @return String - built view
 	 */
 	public final static String build(DateTime timeOfViewing, List<PostEvent> postings) {
+		StringBuilder view = buildView(false, timeOfViewing, postings);
+		return view.toString();
+	}
+
+	/**
+	 * Build a view for a user wall
+	 * @param timeOfViewing - time of viewing
+	 * @param postings - list of postings
+	 * @return String - built view
+	 */
+	public static String buildWall(DateTime timeOfViewing, List<PostEvent> postings) {
+		StringBuilder view = buildView(true, timeOfViewing, postings);
+		return view.toString();
+	}
+
+	private static StringBuilder buildView(boolean addUserPrefix, DateTime timeOfViewing,
+			List<PostEvent> postings) {
 		sortInReverseTimeOrder(postings);
 		StringBuilder view = new StringBuilder("");
 		// get first posting - 
@@ -33,7 +50,13 @@ public class ViewBuilder {
 		int firstPostingOffset = 0;
 		// now all other posting will be relative to firstPostingTime
 		for (PostEvent postEvent : postings) {
-			StringBuilder builder = new StringBuilder(postEvent.getMessage());
+			StringBuilder builder = new StringBuilder();
+
+			if (addUserPrefix) {
+				builder.append(postEvent.getUser());
+				builder.append(" - ");
+			}
+			builder.append(postEvent.getMessage());
 			builder.append(" ");
 			builder.append("(");
 			int seconds = 0;
@@ -50,7 +73,7 @@ public class ViewBuilder {
 			view.append(builder);
 			view.append("\n");
 		}
-		return view.toString();
+		return view;
 	}
 
 	private static void sortInReverseTimeOrder(List<PostEvent> postings) {

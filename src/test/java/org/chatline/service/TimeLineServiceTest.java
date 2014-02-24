@@ -81,7 +81,7 @@ public class TimeLineServiceTest extends TimeLineTestHelper {
 		timeLineService.follow("Charlie", "Alice");
 		String wall = timeLineService.getWall("Charlie");
 		
-		assertEquals("I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nI love the weather today (2 seconds ago)\n", wall);		
+		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nAlice - I love the weather today (2 seconds ago)\n", wall);		
 	}
 	
 	@Test
@@ -102,6 +102,6 @@ public class TimeLineServiceTest extends TimeLineTestHelper {
 		timeLineService.follow("Charlie", "Bob");
 		String wall = timeLineService.getWall("Charlie");
 		
-		assertEquals("I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nOh, we lost! (2 seconds ago)\nat least it's sunny (3 seconds ago)\nI love the weather today (4 seconds ago)\n", wall);		
+		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nBob - Oh, we lost! (2 seconds ago)\nBob - at least it's sunny (3 seconds ago)\nAlice - I love the weather today (4 seconds ago)\n", wall);		
 	}
 }

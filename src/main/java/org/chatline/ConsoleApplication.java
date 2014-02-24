@@ -21,6 +21,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ConsoleApplication {
 
+	private static final String QUIT = "quit";
+
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ConsoleApplication.class);
 
@@ -48,6 +50,9 @@ public class ConsoleApplication {
 	}
 
 	public String processInput(String input) {
+		if (StringUtils.equalsIgnoreCase(QUIT, input)) {
+			return null;
+		}
 		Command command = commandInterpreter.parse(input);
 		String response = command.execute();
 		return response;
@@ -62,7 +67,7 @@ public class ConsoleApplication {
 		application.init();
 		String input = "";
 		Scanner scanner = new Scanner(System.in);
-		while (!StringUtils.equalsIgnoreCase("quit", input)) {
+		while (!StringUtils.equalsIgnoreCase(QUIT, input)) {
 			System.out.print("> ");
 			input = scanner.nextLine();
 			String response = application.processInput(input);

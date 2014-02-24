@@ -75,7 +75,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 		for (String followingUser : userFollowings.get(user)) {
 			aagregatePostEvents.addAll(userTimelines.get(followingUser).getUserPostings());
 		}
-		return ViewBuilder.build(now, aagregatePostEvents);
+		return ViewBuilder.buildWall(now, aagregatePostEvents);
 	}
 
 }
