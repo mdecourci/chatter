@@ -3,6 +3,7 @@
  */
 package org.chatline.command;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -18,12 +19,15 @@ import org.springframework.util.Assert;
 @Named
 public class CommandFactory {
 
-	@Resource(name = "commandMap")
-	private Map<CommandType, Command> commandMap;
+	private Map<CommandType, Command> commandMap = new HashMap<>();
 	
 	public Command getCommand(CommandType commandType) {
 		Assert.notNull(commandType, "A command type is mandatory");
 		return commandMap.get(commandType);
+	}
+
+	public void register(CommandType commandType, Command command) {
+		commandMap.put(commandType, command);
 	}
 
 }

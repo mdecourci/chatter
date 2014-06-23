@@ -4,6 +4,7 @@ target
 .project
 .settings
 .eclipse-pmd
+*.log*
 
 # Package Files #
 *.jar

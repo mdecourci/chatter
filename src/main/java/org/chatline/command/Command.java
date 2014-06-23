@@ -3,6 +3,9 @@
  */
 package org.chatline.command;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 /**
  * A chat command object
  * @author michaeldecourci
@@ -14,7 +17,15 @@ public abstract class Command {
 	private String message;
 	private String followingUser;
 	
+	@Inject
+	protected CommandFactory commandFactory;
+	
 	public abstract <T> T execute();
+
+	@PostConstruct
+	protected void register() {
+		commandFactory.register(commandType, this);
+	}
 
 	public CommandType getCommandType() {
 		return commandType;
