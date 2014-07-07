@@ -14,8 +14,4 @@ public interface TimeLineService {
 	void post(String user, String message);
 
 	TimeLine getTimeLine(String user);
-
-	void follow(String user, String followingUser);
-
-	String getWall(String user);
 }

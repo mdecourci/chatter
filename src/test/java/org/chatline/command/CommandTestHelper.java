@@ -3,6 +3,8 @@
  */
 package org.chatline.command;
 
+import org.chatline.domain.Wall;
+import org.chatline.domain.WallFactory;
 import org.chatline.service.TimeLineService;
 import org.junit.Before;
 import org.mockito.Mock;
@@ -17,6 +19,8 @@ public abstract class CommandTestHelper {
 
 	@Mock
 	protected TimeLineService mockTimeLineService;
+	@Mock
+	protected WallFactory mockWallFactory;
 
 	/**
 	 * @throws java.lang.Exception

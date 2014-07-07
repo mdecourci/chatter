@@ -6,7 +6,8 @@ package org.chatline.command;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.chatline.service.TimeLineService;
+import org.chatline.domain.Wall;
+import org.chatline.domain.WallFactory;
 
 /**
  * Wall command
@@ -17,7 +18,7 @@ import org.chatline.service.TimeLineService;
 public class WallCommand extends Command {
 	
 	@Inject
-	private TimeLineService timeLineService;
+	private WallFactory wallFactory;
 
 	public WallCommand() {
 		super();
@@ -30,7 +31,8 @@ public class WallCommand extends Command {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() {
-		return timeLineService.getWall(getUser());
+		Wall wall = wallFactory.createWall(getUser());
+		return wall.getPosts();
 	}
 
 }

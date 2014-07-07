@@ -5,8 +5,11 @@ package org.chatline.command;
 
 import static org.junit.Assert.*;
 
+import org.chatline.domain.Wall;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -17,13 +20,16 @@ public class FollowingCommandTest extends CommandTestHelper {
 
 	@InjectMocks
 	private FollowingCommand followingCommand;
+	@Mock
+	private Wall mockWall;
 	
 	@Test
 	public void execute() {
 		followingCommand.setUser("Charlie");
 		followingCommand.setFollowingUser("Alice");
 		
-		doNothing().when(mockTimeLineService).follow(anyString(), anyString());
+		when(mockWallFactory.createWall(anyString())).thenReturn(mockWall);
+		doNothing().when(mockWall).follow(anyString());
 		followingCommand.execute();
 	}
 

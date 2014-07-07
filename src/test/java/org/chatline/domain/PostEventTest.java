@@ -23,14 +23,14 @@ public class PostEventTest {
 	@Before
 	public void beforeTest() {
 		now = DateTime.now();
-		postEvent = new PostEvent("Alice", "test", now);		
+		postEvent = new PostEvent(new Owner("Alice"), "test", now);		
 	}
 	
 	@Test
 	public void getters() {
 		assertEquals("test", postEvent.getMessage());
 		assertEquals(now, postEvent.getDateTime());
-		assertEquals("Alice", postEvent.getUser());
+		assertEquals("Alice", postEvent.getOwner().getName());
 		assertNotNull(postEvent.toString());
 	}
 

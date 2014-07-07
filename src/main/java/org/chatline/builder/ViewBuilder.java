@@ -43,7 +43,7 @@ public class ViewBuilder {
 
 	private static StringBuilder buildView(boolean addUserPrefix, DateTime timeOfViewing,
 			List<PostEvent> postings) {
-		sortInReverseTimeOrder(postings);
+//		sortInReverseTimeOrder(postings);
 		StringBuilder view = new StringBuilder("");
 		// get first posting - 
 		DateTime firstPostingTime = postings.get(0).getDateTime();
@@ -53,7 +53,7 @@ public class ViewBuilder {
 			StringBuilder builder = new StringBuilder();
 
 			if (addUserPrefix) {
-				builder.append(postEvent.getUser());
+				builder.append(postEvent.getOwner().getName());
 				builder.append(" - ");
 			}
 			builder.append(postEvent.getMessage());

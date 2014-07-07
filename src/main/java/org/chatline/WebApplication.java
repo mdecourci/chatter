@@ -1,12 +1,15 @@
 package org.chatline;
 
+import org.chatline.service.ChatterConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @Configuration
+@Import(value = ChatterConfig.class)
 @EnableAutoConfiguration
 @ComponentScan
 public class WebApplication {

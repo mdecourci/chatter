@@ -6,7 +6,8 @@ package org.chatline.command;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.chatline.service.TimeLineService;
+import org.chatline.domain.Wall;
+import org.chatline.domain.WallFactory;
 
 /**
  * Following command
@@ -16,7 +17,7 @@ import org.chatline.service.TimeLineService;
 public class FollowingCommand extends Command {
 	
 	@Inject
-	private TimeLineService timeLineService;
+	private WallFactory wallFactory;
 
 	public FollowingCommand() {
 		super();
@@ -29,7 +30,8 @@ public class FollowingCommand extends Command {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Void execute() {
-		timeLineService.follow(getUser(), getFollowingUser());
+		Wall wall = wallFactory.createWall(getUser());
+		wall.follow(getFollowingUser());
 		return null;
 	}
 
