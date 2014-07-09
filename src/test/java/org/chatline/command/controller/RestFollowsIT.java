@@ -101,7 +101,7 @@ public class RestFollowsIT extends TimeLineTestHelper {
 		String json=  mvcResult.getResponse().getContentAsString();
 		
 		with(json).assertThat("$.user", equalTo("Charlie"))
-		.assertThat("$.message", equalTo("Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\nAlice - I love the weather today (4 seconds ago)"));
+		.assertThat("$.message", equalTo("Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\nAlice - I love the weather today (4 seconds ago)\n"));
 	}
 
 	@Test

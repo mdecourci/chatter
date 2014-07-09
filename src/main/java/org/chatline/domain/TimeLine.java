@@ -79,14 +79,14 @@ public class TimeLine {
 		return postings.get(++postingIteratorIndex).getMessage();
 	}
 
-	public String getView() {
+	public String read() {
 		DateTime now = DateTime.now();  // get the time of viewing
-		LOG.debug("getView()");
+		LOG.debug("read()");
 		String view = "";
 
 		userPostings = postingRepository.findByOwnerOrderByDateTimeAsc(this.owner);
 		
-		LOG.info("*** getView(): user={}, posts={}", this.owner.getName(), userPostings.size());
+		LOG.info("*** read(): user={}, posts={}", this.owner.getName(), userPostings.size());
 		List<PostEvent> postings = assertUserPostings();
 		view = ViewBuilder.build(now, postings);
 		return view;

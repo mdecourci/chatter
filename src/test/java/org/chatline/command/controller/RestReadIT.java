@@ -1,20 +1,16 @@
 package org.chatline.command.controller;
 
 import static com.jayway.jsonassert.JsonAssert.with;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.chatline.TimeLineTestHelper;
 import org.chatline.WebApplication;
-import org.chatline.domain.PostEvent;
 import org.chatline.service.repository.PostingRepository;
 import org.junit.After;
 import org.junit.Before;

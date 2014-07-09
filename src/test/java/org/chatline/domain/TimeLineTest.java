@@ -62,18 +62,18 @@ public class TimeLineTest extends TimeLineTestHelper {
 	}
 
 	@Test
-	public void viewTimeLine() {
+	public void readTimeLine() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Alice");
 		timeLine.publish("I love the weather today", DateTime.now());
 		// delay by 1 secs
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("I love the weather today (1 seconds ago)\n", timeLine.getView());
+		assertEquals("I love the weather today (1 seconds ago)\n", timeLine.read());
 	}
 
 	@Test
-	public void viewMoreTimeLine() {
+	public void readMoreTimeLine() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Bob");
 		timeLine.publish("Oh, we lost!", DateTime.now());
 		// delay by 1 secs
@@ -83,6 +83,6 @@ public class TimeLineTest extends TimeLineTestHelper {
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (1 seconds ago)\n", timeLine.getView());
+		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (1 seconds ago)\n", timeLine.read());
 	}
 }

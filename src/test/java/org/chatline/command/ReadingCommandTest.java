@@ -29,7 +29,7 @@ public class ReadingCommandTest extends CommandTestHelper {
 
 		TimeLine mockTimeLine = mock(TimeLine.class);
 		when(mockTimeLineService.getTimeLine(anyString())).thenReturn(mockTimeLine);
-		when(mockTimeLine.getView()).thenReturn(timeLineView);
+		when(mockTimeLine.read()).thenReturn(timeLineView);
 		
 		String view = readingCommand.execute();
 		

@@ -32,7 +32,7 @@ public class ReadingCommand extends Command {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() {
-		return timeLineService.getTimeLine(getUser()).getView();
+		return timeLineService.getTimeLine(getUser()).read();
 	}
 
 }

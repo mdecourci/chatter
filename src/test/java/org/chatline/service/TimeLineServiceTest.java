@@ -60,17 +60,17 @@ public class TimeLineServiceTest extends TimeLineTestHelper {
 	}
 
 	@Test
-	public void viewTimeLine() {
+	public void readTimeLine() {
 		timeLineService.post("Alice", "I love the weather today");
 		// delay by 1 secs
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("I love the weather today (1 seconds ago)\n", timeLineService.getTimeLine("Alice").getView());
+		assertEquals("I love the weather today (1 seconds ago)\n", timeLineService.getTimeLine("Alice").read());
 	}
 
 	@Test
-	public void viewMoreTimeLine() {
+	public void readMoreTimeLine() {
 		timeLineService.post("Bob", "Oh, we lost!");
 		// delay by 1 secs
 		delay(1);
@@ -79,6 +79,6 @@ public class TimeLineServiceTest extends TimeLineTestHelper {
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (1 seconds ago)\n", timeLineService.getTimeLine("Bob").getView());
+		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (1 seconds ago)\n", timeLineService.getTimeLine("Bob").read());
 	}
 }
