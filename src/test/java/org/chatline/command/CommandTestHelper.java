@@ -3,7 +3,6 @@
  */
 package org.chatline.command;
 
-import org.chatline.domain.Wall;
 import org.chatline.domain.WallFactory;
 import org.chatline.service.TimeLineService;
 import org.junit.Before;

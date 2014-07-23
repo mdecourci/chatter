@@ -1,5 +1,6 @@
 package org.chatline.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +9,6 @@ import javax.inject.Inject;
 
 import org.chatline.builder.ViewBuilder;
 import org.chatline.service.repository.PostingRepository;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -80,7 +80,7 @@ public class TimeLine {
 	}
 
 	public String read() {
-		DateTime now = DateTime.now();  // get the time of viewing
+		LocalDateTime now = LocalDateTime.now();  // get the time of viewing
 		LOG.debug("read()");
 		String view = "";
 
@@ -104,7 +104,7 @@ public class TimeLine {
 		return userPostings;
 	}
 
-	public void publish(String message, DateTime now) {
+	public void publish(String message, LocalDateTime now) {
 		LOG.debug("publish() : message={}, now={}", message, now);
 		Assert.hasLength(message, "message is mandatory");
 		Assert.notNull(now, "date is mandatory");

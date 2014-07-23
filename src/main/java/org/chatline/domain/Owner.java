@@ -14,11 +14,13 @@ import javax.persistence.Table;
 public class Owner {
 	@Id
 	private String name;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Owner> followers;
+	
 	public Owner() {
 		super();
 	}
+	
 	public Owner(String name) {
 		super();
 		this.name = name;

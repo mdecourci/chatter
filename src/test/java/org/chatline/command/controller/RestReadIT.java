@@ -81,7 +81,7 @@ public class RestReadIT extends TimeLineTestHelper {
 		String json=  mvcResult.getResponse().getContentAsString();
 		
 		with(json).assertThat("$.user", equalTo("Alice"))
-		.assertThat("$.message", equalTo("I love the weather today (6 seconds ago)\n"));
+		.assertThat("$.message", equalTo("I love the weather today (6sec ago)\n"));
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class RestReadIT extends TimeLineTestHelper {
 		String json=  mvcResult.getResponse().getContentAsString();
 		
 		with(json).assertThat("$.user", equalTo("Bob"))
-		.assertThat("$.message", equalTo("Oh, we lost! (4 seconds ago)\nat least it's sunny (2 seconds ago)\n"));
+		.assertThat("$.message", equalTo("Oh, we lost! (4sec ago)\nat least it's sunny (2sec ago)\n"));
 	}
 
 }

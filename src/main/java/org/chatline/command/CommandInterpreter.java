@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
-import org.chatline.service.TimeLineServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;

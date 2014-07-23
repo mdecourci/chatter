@@ -49,7 +49,7 @@ public class WallTest extends TimeLineTestHelper {
 		wall.follow("Alice");
 		String posts = wall.getPosts();
 		
-		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nAlice - I love the weather today (2 seconds ago)\n", posts);		
+		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1sec ago)\nAlice - I love the weather today (2sec ago)\n", posts);		
 	}
 	
 	@Test
@@ -73,6 +73,6 @@ public class WallTest extends TimeLineTestHelper {
 		wall.follow("Bob");
 		String posts = wall.getPosts();
 		
-		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1 seconds ago)\nBob - Oh, we lost! (2 seconds ago)\nBob - at least it's sunny (3 seconds ago)\nAlice - I love the weather today (4 seconds ago)\n", posts);		
+		assertEquals("Charlie - I'm in New York today! Anyone wants to have a coffee? (1sec ago)\nBob - Oh, we lost! (2sec ago)\nBob - at least it's sunny (3sec ago)\nAlice - I love the weather today (4sec ago)\n", posts);		
 	}
 }

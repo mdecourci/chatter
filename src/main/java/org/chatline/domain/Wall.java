@@ -1,15 +1,13 @@
 package org.chatline.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.chatline.builder.ViewBuilder;
 import org.chatline.service.repository.OwnerRepository;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -41,14 +39,21 @@ public class Wall {
 		if (this.owner.getFollowers() == null || this.owner.getFollowers().isEmpty()) {
 			this.owner.setFollowers(new HashSet<Owner>());
 		}
-		this.owner.getFollowers().add(new Owner(followingUser));
+		// check follower persisted
+		Owner followingOwner = ownerRepository.findOne(followingUser);
+		if (followingOwner == null) {
+			followingOwner = new Owner(followingUser);
+			ownerRepository.save(followingOwner);
+			followingOwner = ownerRepository.findOne(followingUser);
+		}
+		this.owner.getFollowers().add(followingOwner);
 		ownerRepository.save(this.owner);
 		this.owner = ownerRepository.findOne(owner.getName());
 	}
 
 	public String getPosts() {
 		LOG.debug("getPosts()");
-		DateTime now = DateTime.now();  // get the time of the request
+		LocalDateTime now = LocalDateTime.now();  // get the time of the request
 		this.owner = ownerRepository.findOne(owner.getName());
 
 		// aggregate the list of postings

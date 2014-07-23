@@ -3,10 +3,11 @@
  */
 package org.chatline.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +18,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 /**
  * A posting event. 
@@ -38,9 +38,9 @@ public class PostEvent {
 	@Column(name = "MSG")
 	private String message;
 	@Temporal(TemporalType.TIMESTAMP)
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
 	@Column(name = "POSTING_DATE")
-	private DateTime dateTime;
+	private LocalDateTime dateTime;
 
 	public PostEvent() {
 		super();
@@ -51,7 +51,7 @@ public class PostEvent {
 	 * @param message
 	 * @param dateTime
 	 */
-	public PostEvent(Owner owner, String message, DateTime dateTime) {
+	public PostEvent(Owner owner, String message, LocalDateTime dateTime) {
 		super();
 		this.owner = owner;
 		this.message = message;
@@ -66,7 +66,7 @@ public class PostEvent {
 		return message;
 	}
 
-	public DateTime getDateTime() {
+	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 

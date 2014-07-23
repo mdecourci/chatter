@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -38,6 +39,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebApplication.class}, initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration
+@DirtiesContext
 public class RestFollowsIT extends TimeLineTestHelper {
 	
 	private MockMvc mockMvc;
@@ -101,7 +103,7 @@ public class RestFollowsIT extends TimeLineTestHelper {
 		String json=  mvcResult.getResponse().getContentAsString();
 		
 		with(json).assertThat("$.user", equalTo("Charlie"))
-		.assertThat("$.message", equalTo("Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\nAlice - I love the weather today (4 seconds ago)\n"));
+		.assertThat("$.message", equalTo("Charlie - I'm in New York today! Anyone wants to have a coffee? (2sec ago)\nAlice - I love the weather today (4sec ago)\n"));
 	}
 
 	@Test

@@ -3,17 +3,14 @@
  */
 package org.chatline.command;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
 
-import org.chatline.domain.TimeLine;
 import org.chatline.domain.Wall;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
 
 /**
  * @author michaeldecourci

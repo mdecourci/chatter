@@ -6,8 +6,6 @@ package org.chatline.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.util.Assert;

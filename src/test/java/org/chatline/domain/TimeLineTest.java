@@ -2,12 +2,13 @@ package org.chatline.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDateTime;
+
 import javax.inject.Inject;
 
 import org.chatline.TimeLineTestHelper;
 import org.chatline.WebApplication;
 import org.chatline.service.repository.PostingRepository;
-import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void personalPosting() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Alice");
-		timeLine.publish("I love the weather today", DateTime.now());
+		timeLine.publish("I love the weather today", LocalDateTime.now());
 		
 		assertEquals("I love the weather today", timeLine.getLastPost());
 	}
@@ -54,8 +55,8 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void manyPersonalPosting() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Bob");
-		timeLine.publish("Oh, we lost!", DateTime.now());
-		timeLine.publish("at least it's sunny", DateTime.now());
+		timeLine.publish("Oh, we lost!", LocalDateTime.now());
+		timeLine.publish("at least it's sunny", LocalDateTime.now());
 		
 		assertEquals("Oh, we lost!", timeLine.firstPost());
 		assertEquals("at least it's sunny", timeLine.nextPost());
@@ -64,25 +65,25 @@ public class TimeLineTest extends TimeLineTestHelper {
 	@Test
 	public void readTimeLine() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Alice");
-		timeLine.publish("I love the weather today", DateTime.now());
+		timeLine.publish("I love the weather today", LocalDateTime.now());
 		// delay by 1 secs
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("I love the weather today (1 seconds ago)\n", timeLine.read());
+		assertEquals("I love the weather today (1sec ago)\n", timeLine.read());
 	}
 
 	@Test
 	public void readMoreTimeLine() {
 		TimeLine timeLine = timeLineFactory.createTimeLine("Bob");
-		timeLine.publish("Oh, we lost!", DateTime.now());
+		timeLine.publish("Oh, we lost!", LocalDateTime.now());
 		// delay by 1 secs
 		delay(1);
-		timeLine.publish("at least it's sunny", DateTime.now());
+		timeLine.publish("at least it's sunny", LocalDateTime.now());
 		// delay by 1 secs
 		delay(1);
 
 		// get time to use in text message
-		assertEquals("Oh, we lost! (2 seconds ago)\nat least it's sunny (1 seconds ago)\n", timeLine.read());
+		assertEquals("Oh, we lost! (2sec ago)\nat least it's sunny (1sec ago)\n", timeLine.read());
 	}
 }

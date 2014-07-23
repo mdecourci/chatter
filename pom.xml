@@ -19,9 +19,17 @@
 		<mockito.version>1.9.5</mockito.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<orika.version>1.4.2</orika.version>
+		<dropwizard.version>0.6.2</dropwizard.version>
 	</properties>
 
 	<dependencies>
+	<!-- 
+		<dependency>
+			<groupId>com.yammer.dropwizard</groupId>
+			<artifactId>dropwizard-core</artifactId>
+			<version>${dropwizard.version}</version>
+		</dependency>
+	 -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -73,10 +81,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
@@ -90,6 +94,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.extended</artifactId>
+			<version>3.2.0.GA</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
@@ -138,11 +147,6 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.jadira.usertype</groupId>
-			<artifactId>usertype.core</artifactId>
-			<version>3.0.0.GA</version>
-		</dependency>
-		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
@@ -172,8 +176,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
 					<configuration>
- 						<verbose>true</verbose>
- 						<source>1.8</source>
+						<verbose>true</verbose>
+						<source>1.8</source>
 						<target>1.8</target>
 						<compilerVersion>1.8</compilerVersion>
 						<executable>/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/bin/javac</executable>
@@ -191,16 +195,16 @@
 					<layout>ZIP</layout>
 				</configuration>
 			</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
- 						<verbose>true</verbose>
- 						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<verbose>true</verbose>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

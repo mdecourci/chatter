@@ -3,11 +3,11 @@
  */
 package org.chatline.command;
 
-import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doNothing;
 
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import static org.mockito.Mockito.*;
 
 /**
  * @author michaeldecourci

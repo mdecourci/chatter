@@ -3,10 +3,11 @@
  */
 package org.chatline.domain;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.chatline.domain.PostEvent;
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +19,11 @@ import org.junit.Test;
 public class PostEventTest {
 
 	private PostEvent postEvent;
-	private DateTime now;
+	private LocalDateTime now;
 
 	@Before
 	public void beforeTest() {
-		now = DateTime.now();
+		now = LocalDateTime.now();
 		postEvent = new PostEvent(new Owner("Alice"), "test", now);		
 	}
 	

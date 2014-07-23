@@ -3,8 +3,8 @@
  */
 package org.chatline.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,7 +12,6 @@ import javax.inject.Named;
 
 import org.chatline.domain.TimeLine;
 import org.chatline.domain.TimeLineFactory;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -35,7 +34,7 @@ public class TimeLineServiceImpl implements TimeLineService {
 	 */
 	@Override
 	public void post(String user, String message) {
-		DateTime now = DateTime.now();  // get the time of posting
+		LocalDateTime now = LocalDateTime.now();  // get the time of posting
 		LOG.debug("post() : user={}, message={}", user, message);
 		Assert.hasLength(user, "user is mandatory");
 		Assert.hasLength(message, "message is mandatory");
